@@ -1,7 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ScalarConverter.cpp                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rhiguita <rhiguita@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/29 23:28:59 by rhiguita          #+#    #+#             */
+/*   Updated: 2026/04/29 23:29:47 by rhiguita         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ScalarConverter.hpp"
 #include <climits>
-
-// ── Detección de tipo ─────────────────────────────────────────────────────────
 
 static bool isPseudoLiteral(const std::string& s) {
 	return (s == "nan" || s == "nanf"
@@ -72,8 +82,6 @@ static bool isDoubleLiteral(const std::string& s) {
 	return hasPoint;
 }
 
-// ── Helpers de impresión ──────────────────────────────────────────────────────
-
 static void printChar(double value) {
 	if (std::isnan(value) || std::isinf(value)
 		|| value < 0 || value > 127)
@@ -108,8 +116,6 @@ static void printDouble(double value) {
 		std::cout << ".0";
 	std::cout << std::endl;
 }
-
-// ── Conversiones por tipo ─────────────────────────────────────────────────────
 
 static void fromChar(char c) {
 	double value = static_cast<double>(c);
@@ -184,8 +190,6 @@ static void fromPseudo(const std::string& literal) {
 		std::cout << "double: -inf" << std::endl;
 	}
 }
-
-// ── Punto de entrada ──────────────────────────────────────────────────────────
 
 void ScalarConverter::convert(const std::string& literal) {
 	if (literal.empty()) {
