@@ -1,11 +1,21 @@
-#include <iostream>
-#include <cstdlib>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   functions.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rhiguita <rhiguita@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/29 23:43:31 by rhiguita          #+#    #+#             */
+/*   Updated: 2026/04/29 23:46:07 by rhiguita         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "functions.hpp"
 #include "A.hpp"
 #include "B.hpp"
 #include "C.hpp"
+#include <cstdlib>
 
-// Genera aleatoriamente una instancia de A, B o C
 Base* generate(void) {
 	int random = std::rand() % 3;
 	if (random == 0) {
@@ -20,8 +30,6 @@ Base* generate(void) {
 	}
 }
 
-// Identifica el tipo real usando PUNTERO
-// dynamic_cast con puntero retorna NULL si falla
 void identify(Base* p) {
 	if (dynamic_cast<A*>(p))
 		std::cout << "A" << std::endl;
@@ -33,8 +41,6 @@ void identify(Base* p) {
 		std::cout << "Unknown type" << std::endl;
 }
 
-// Identifica el tipo real usando REFERENCIA
-// dynamic_cast con referencia lanza std::bad_cast si falla
 void identify(Base& p) {
 	try {
 		(void)dynamic_cast<A&>(p);
