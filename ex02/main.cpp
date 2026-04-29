@@ -6,7 +6,6 @@
 #include "B.hpp"
 #include "C.hpp"
 
-// Genera aleatoriamente una instancia de A, B o C
 Base* generate(void) {
 	int random = std::rand() % 3;
 	if (random == 0) {
@@ -21,8 +20,6 @@ Base* generate(void) {
 	}
 }
 
-// Identifica el tipo real usando PUNTERO
-// dynamic_cast con puntero retorna NULL si falla
 void identify(Base* p) {
 	if (dynamic_cast<A*>(p))
 		std::cout << "A" << std::endl;
@@ -34,8 +31,6 @@ void identify(Base* p) {
 		std::cout << "Unknown type" << std::endl;
 }
 
-// Identifica el tipo real usando REFERENCIA
-// dynamic_cast con referencia lanza std::bad_cast si falla
 void identify(Base& p) {
 	try {
 		(void)dynamic_cast<A&>(p);

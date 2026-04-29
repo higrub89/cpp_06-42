@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rhiguita <rhiguita@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/29 23:32:28 by rhiguita          #+#    #+#             */
+/*   Updated: 2026/04/29 23:32:29 by rhiguita         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Serializer.hpp"
 
 int main() {
@@ -10,19 +22,16 @@ int main() {
 	std::cout << "Name:    " << original.name << std::endl;
 	std::cout << "Value:   " << original.value << std::endl;
 
-	// Serialize: pointer → integer
 	uintptr_t raw = Serializer::serialize(&original);
 	std::cout << std::endl << "=== Serialized ===" << std::endl;
 	std::cout << "Raw:     " << raw << std::endl;
 
-	// Deserialize: integer → pointer
 	Data* restored = Serializer::deserialize(raw);
 	std::cout << std::endl << "=== Deserialized ===" << std::endl;
 	std::cout << "Address: " << restored << std::endl;
 	std::cout << "Name:    " << restored->name << std::endl;
 	std::cout << "Value:   " << restored->value << std::endl;
 
-	// Proof: same pointer
 	std::cout << std::endl << "=== Verification ===" << std::endl;
 	if (restored == &original)
 		std::cout << "✅ Pointers match!" << std::endl;
