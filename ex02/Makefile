@@ -12,6 +12,7 @@ NC          = \033[0m
 OBJ_DIR     = obj
 
 SRCS        =	Base.cpp \
+				functions.cpp \
 			 	main.cpp
 
 OBJS        = $(addprefix $(OBJ_DIR)/, $(SRCS:.cpp=.o))
@@ -23,7 +24,7 @@ $(NAME): $(OBJS)
 	@$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 	@echo "$(GREEN)✅  SUCCESSFUL COMPILATION  ✅$(NC)"
 
-$(OBJ_DIR)/%.o: %.cpp Base.hpp A.hpp B.hpp C.hpp
+$(OBJ_DIR)/%.o: %.cpp Base.hpp A.hpp B.hpp C.hpp functions.hpp
 	@mkdir -p $(OBJ_DIR)
 	@echo "$(YELLOW) Compiling:$(NC) $<"
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
